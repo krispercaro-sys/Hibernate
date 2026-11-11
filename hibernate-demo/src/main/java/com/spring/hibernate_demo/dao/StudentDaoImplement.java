@@ -44,14 +44,12 @@ public class StudentDaoImplement implements StudentDao {
         }
     }
 
-     @Override
+    @Override
     @Transactional
     public int deleteAll() {
         int numRows = em.createQuery("DELETE FROM Student").executeUpdate();
         return numRows;
     }
-
-
 
     @Override
     public Student findById(Integer id) {
@@ -63,7 +61,7 @@ public class StudentDaoImplement implements StudentDao {
         return em.createQuery("FROM Student ORDER BY lastName asc", Student.class).getResultList();
     }
 
-    @Override 
+    @Override
     public List<Student> findByLastName(String lastname) {
         TypedQuery<Student> query = em.createQuery("FROM Student WHERE lastName = :data", Student.class);
         query.setParameter("data", lastname);

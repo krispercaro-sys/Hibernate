@@ -19,22 +19,33 @@ public class HibernateDemoApplication {
 		SpringApplication.run(HibernateDemoApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner commandLineRunner(StudentDao studentDao) {
-		return runner -> {
-			// readStudent(studentDao);
-			// queryStudentLastName(studentDao);
-			// queryStudents(studentDao);
-			// updateStudent(studentDao);
-			//deleteStudent(studentDao);
-			deleteAllStudent(studentDao);
-		};
-	}
+	// @Bean
+	// CommandLineRunner commandLineRunner(StudentDao studentDao) {
+	// 	return runner -> {
+	// 		createStudent(studentDao);
+	// 		// readStudent(studentDao);
+	// 		// queryStudentLastName(studentDao);
+	// 		// queryStudents(studentDao);
+	// 		// updateStudent(studentDao);
+	// 		//deleteStudent(studentDao);
+	// 		//deleteAllStudent(studentDao);
+	// 	};
+	// }
 
 	private void deleteAllStudent(StudentDao studentDao){
 		System.out.println("Deleting all student information...");
 		int rowsDeleted = studentDao.deleteAll();
 		System.out.println("Number of deleted rowsL " + rowsDeleted);
+	}
+
+	private void createStudent(StudentDao studentDao) {
+		System.out.println("Creating student information...");
+		Student tempStudent = new Student("Vergel", "Nicanor", "Vergel.Nicanor@example.com");
+
+		System.out.println("Saving student information...");
+		studentDao.save(tempStudent);
+
+		System.out.println("Saved! Generated id: " + tempStudent.getId());
 	}
 
 	private void deleteStudent(StudentDao studentDao){

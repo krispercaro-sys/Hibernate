@@ -67,11 +67,11 @@ public class Student {
         this.email = email;
     }
 
-        @Override 
-        public String toString(){
-            return "Student [id =" + id + 
-            ",firstname=" + firstName + 
-            ",lastName=" + lastName +
-            ", email=" + email +"]";
-        }
+    @Override
+    public String toString() {
+        return "Student [id =" + id +
+                ",firstname=" + firstName +
+                ",lastName=" + lastName +
+                ", email=" + email + "]";
+    }
 }
