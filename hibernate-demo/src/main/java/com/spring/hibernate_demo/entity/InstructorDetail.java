@@ -9,72 +9,85 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+/**
+ * Entity representing supplemental Instructor details.
+ */
 @Entity
 @Table(name = "instructor_detail")
 public class InstructorDetail {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-  @Column(name = "subject")
-  private String subject;
+    @Column(name = "subject")
+    private String subject;
 
-  @Column(name = "hobby")
-  private String hobby;
+    @Column(name = "hobby")
+    private String hobby;
 
-  @OneToOne(mappedBy = "instructorDeets", cascade = {
-      CascadeType.DETACH,
-      CascadeType.MERGE,
-      CascadeType.PERSIST,
-      CascadeType.REFRESH
-  })
-  private Instructor instructor;
+    @OneToOne(mappedBy = "instructorDeets", cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH
+    })
+    private Instructor instructor;
 
-  public InstructorDetail() {
-  }
+    /**
+     * Default no-arg constructor.
+     */
+    public InstructorDetail() {
+    }
 
-  public InstructorDetail(String subject, String hobby) {
-    this.subject = subject;
-    this.hobby = hobby;
-  }
+    /**
+     * Constructs InstructorDetail with subject and hobby.
+     *
+     * @param subject the instructor's teaching subject
+     * @param hobby   the instructor's hobby
+     */
+    public InstructorDetail(String subject, String hobby) {
+        this.subject = subject;
+        this.hobby = hobby;
+    }
 
-  public int getId() {
-    return id;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public String getSubject() {
-    return subject;
-  }
+    public String getSubject() {
+        return subject;
+    }
 
-  public void setSubject(String subject) {
-    this.subject = subject;
-  }
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 
-  public String getHobby() {
-    return hobby;
-  }
+    public String getHobby() {
+        return hobby;
+    }
 
-  public void setHobby(String hobby) {
-    this.hobby = hobby;
-  }
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
 
-  public Instructor getInstructor() {
-    return instructor;
-  }
+    public Instructor getInstructor() {
+        return instructor;
+    }
 
-  public void setInstructor(Instructor instructor) {
-    this.instructor = instructor;
-  }
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
 
-  @Override
-  public String toString() {
-    return "InstructorDetail [id=" + id + ", subject=" + subject
-        + ", hobby=" + hobby + "]";
-  }
+    @Override
+    public String toString() {
+        return "InstructorDetail [id=" + id
+                + ", subject=" + subject
+                + ", hobby=" + hobby + "]";
+    }
 }
