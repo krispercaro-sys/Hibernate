@@ -14,27 +14,26 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 /**
- * Implementation of AppDao handling persistence operations for
+ * Implementation of {@link AppDao} handling persistence operations for
  * Instructors, Courses, and Students.
  */
 @Repository
 public class AppDaoImplement implements AppDao {
 
+    /** JPA entity manager used for database operations. */
     private EntityManager em;
 
     /**
      * Constructs an AppDaoImplement with the given EntityManager.
      *
-     * @param em the JPA EntityManager
+     * @param em the JPA {@link EntityManager}
      */
     public AppDaoImplement(EntityManager em) {
         this.em = em;
     }
 
     /**
-     * Deletes an Instructor by their ID if found.
-     *
-     * @param theId the ID of the instructor to delete
+     * {@inheritDoc}
      */
     @Override
     @Transactional
@@ -46,9 +45,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Deletes a Course by its ID.
-     *
-     * @param theId the ID of the course to delete
+     * {@inheritDoc}
      */
     @Override
     @Transactional
@@ -58,9 +55,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Updates an existing Instructor entity.
-     *
-     * @param in the instructor entity to update
+     * {@inheritDoc}
      */
     @Override
     @Transactional
@@ -69,9 +64,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Persists a new Instructor entity.
-     *
-     * @param theInstructor the instructor to save
+     * {@inheritDoc}
      */
     @Override
     @Transactional
@@ -80,21 +73,17 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Deletes an Instructor directly by ID.
-     *
-     * @param theId the ID of the instructor
+     * {@inheritDoc}
      */
     @Override
     @Transactional
-    public void deleteInstructorId(int theId) {
+    public void deleteInstructorAndCoursesById(int theId) {
         Instructor in = em.find(Instructor.class, theId);
         em.remove(in);
     }
 
     /**
-     * Saves an Instructor along with their associated courses.
-     *
-     * @param theInstructor the instructor to persist
+     * {@inheritDoc}
      */
     @Override
     @Transactional
@@ -103,9 +92,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Deletes an InstructorDetail and unlinks it from its Instructor.
-     *
-     * @param theId the ID of the instructor detail
+     * {@inheritDoc}
      */
     @Override
     @Transactional
@@ -117,10 +104,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Finds an Instructor along with courses and details via join fetch.
-     *
-     * @param theId the instructor ID
-     * @return the fetched Instructor
+     * {@inheritDoc}
      */
     @Override
     public Instructor findInstructorByIdJoinFetch(int theId) {
@@ -135,10 +119,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Finds an Instructor by ID.
-     *
-     * @param theId the instructor ID
-     * @return the found Instructor or null
+     * {@inheritDoc}
      */
     @Override
     public Instructor findInstructorById(int theId) {
@@ -146,10 +127,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Finds an InstructorDetail by ID.
-     *
-     * @param theId the instructor detail ID
-     * @return the found InstructorDetail or null
+     * {@inheritDoc}
      */
     @Override
     public InstructorDetail findInstructorDetailById(int theId) {
@@ -157,10 +135,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Retrieves all courses taught by a specific instructor.
-     *
-     * @param theId the instructor ID
-     * @return list of associated Courses
+     * {@inheritDoc}
      */
     @Override
     public List<Course> findCoursesByInstructorId(int theId) {
@@ -172,9 +147,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Persists a new Course entity.
-     *
-     * @param theCourse the course to save
+     * {@inheritDoc}
      */
     @Override
     @Transactional
@@ -183,10 +156,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Finds a Course and eagerly fetches its reviews.
-     *
-     * @param theId the course ID
-     * @return the Course with reviews
+     * {@inheritDoc}
      */
     @Override
     public Course findCourseAndReviewsByCourseId(int theId) {
@@ -200,10 +170,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Finds a Course and eagerly fetches its enrolled students.
-     *
-     * @param theId the course ID
-     * @return the Course with students
+     * {@inheritDoc}
      */
     @Override
     public Course findCourseAndStudentByCourseId(int theId) {
@@ -217,10 +184,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Finds a Student and eagerly fetches their enrolled courses.
-     *
-     * @param theId the student ID
-     * @return the Student with courses
+     * {@inheritDoc}
      */
     @Override
     public Student findStudentAndCoursesByStudentId(int theId) {
@@ -234,9 +198,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Updates an existing Student entity.
-     *
-     * @param student the student to update
+     * {@inheritDoc}
      */
     @Override
     @Transactional
@@ -245,9 +207,7 @@ public class AppDaoImplement implements AppDao {
     }
 
     /**
-     * Deletes a Student by ID after removing course associations.
-     *
-     * @param theId the student ID
+     * {@inheritDoc}
      */
     @Override
     @Transactional

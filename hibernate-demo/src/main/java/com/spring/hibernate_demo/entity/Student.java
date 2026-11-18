@@ -14,26 +14,32 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 /**
- * Entity representing a Student mapped to the "student" table.
+ * JPA entity representing a student mapped to the "student" database
+ * table.
  */
 @Entity
 @Table(name = "student")
 public class Student {
 
+    /** Primary key identifier for the student. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
+    /** First name of the student. */
     @Column(name = "first_name")
     private String firstName;
 
+    /** Last name of the student. */
     @Column(name = "last_name")
     private String lastName;
 
+    /** Email address of the student. */
     @Column(name = "email")
     private String email;
 
+    /** List of courses in which the student is enrolled. */
     @ManyToMany(
             mappedBy = "students",
             fetch = FetchType.LAZY,
@@ -46,13 +52,13 @@ public class Student {
     private List<Course> courses;
 
     /**
-     * Default no-arg constructor.
+     * Default no-argument constructor required by JPA.
      */
     public Student() {
     }
 
     /**
-     * Constructs a Student with personal information.
+     * Constructs a new Student with personal information.
      *
      * @param firstname the student's first name
      * @param lastname  the student's last name
@@ -65,50 +71,100 @@ public class Student {
         this.email = email;
     }
 
+    /**
+     * Gets the unique identifier of the student.
+     *
+     * @return the student ID
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Sets the unique identifier of the student.
+     *
+     * @param id the student ID to set
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets the first name of the student.
+     *
+     * @return the student's first name
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * Sets the first name of the student.
+     *
+     * @param firstName the student's first name to set
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * Gets the last name of the student.
+     *
+     * @return the student's last name
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * Sets the last name of the student.
+     *
+     * @param lastName the student's last name to set
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * Gets the email address of the student.
+     *
+     * @return the student's email address
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Sets the email address of the student.
+     *
+     * @param email the student's email address to set
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * Gets the list of courses in which the student is enrolled.
+     *
+     * @return a {@link List} of enrolled {@link Course} entities
+     */
     public List<Course> getCourses() {
         return courses;
     }
 
+    /**
+     * Sets the list of courses in which the student is enrolled.
+     *
+     * @param courses the {@link List} of {@link Course} entities to set
+     */
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
 
     /**
-     * Convenience method to enroll in a Course bidirectionally.
+     * Convenience method to enroll in a course bidirectionally.
      *
-     * @param course the course to enroll in
+     * @param course the {@link Course} to enroll in
      */
     public void addCourse(Course course) {
         if (courses == null) {
@@ -118,6 +174,11 @@ public class Student {
         course.addStudent(this);
     }
 
+    /**
+     * Returns a string representation of the Student entity.
+     *
+     * @return formatted string containing student details
+     */
     @Override
     public String toString() {
         return "Student [id=" + id

@@ -34,7 +34,7 @@ public interface AppDao {
      *
      * @param theId the unique ID of the instructor to delete
      */
-    void deleteInstructorId(int theId);
+    void deleteInstructorAndCoursesById(int theId);
 
     /**
      * Retrieves instructor detail information by its primary key ID.

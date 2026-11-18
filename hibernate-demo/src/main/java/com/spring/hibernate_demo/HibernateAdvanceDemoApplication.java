@@ -343,7 +343,7 @@ public class HibernateAdvanceDemoApplication {
         int id = 3;
         System.out.println("Delete id: " + id);
 
-        app.deleteInstructorId(id);
+        app.deleteInstructorAndCoursesById(id);
         System.out.println("Deleted successsfully!");
     }
 
@@ -377,8 +377,6 @@ public class HibernateAdvanceDemoApplication {
         InstructorDetail deets = new InstructorDetail(
                 "Math", "Solving problems");
 
-        // Now setInstructorDeets works because the setter is
-        // defined in Instructor
         ins.setInstructorDeets(deets);
 
         System.out.println("Saving instructor: " + ins);
